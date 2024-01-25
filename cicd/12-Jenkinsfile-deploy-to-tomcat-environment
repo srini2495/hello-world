@@ -3,16 +3,16 @@ pipeline {
   options {
     disableConcurrentBuilds()
     disableResume()
-    buildDiscarder(logRotator(numToKeepStr: '10'))
+    buildDiscarder(logRotator(numToKeepStr: '3'))
     timeout(time: 1, unit: 'HOURS')
   }
   tools {
     maven 'maven-3.6.3' 
   }
   environment {
-    TOMCAT_URL    = "http://localhost:8080"
+    TOMCAT_URL    = "http://localhost:8081"
     CONTEXT_PATH  = "/pipeline"
-    WAR_FILE_PATH = "webapp/target/*.war"
+    WAR_FILE_PATH = "target/*.war"
   }
   stages {
     stage ('Build') {
