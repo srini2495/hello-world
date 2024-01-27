@@ -19,15 +19,13 @@ pipeline {
       steps {
         sh 'docker build . -t "hello-world-1"'
         sh 'docker images'
-        sh 'docker run -d -p 8082:8080 hello-world-1'
-        sh 'docker ps -a'
       }
     }
     stage ('Deploy') {
       steps {
-        script {
-          deploy adapters: [tomcat9(credentialsId: 'tomcat_credential', path: '', url: 'http://localhost:8082')], contextPath: '/pipeline', onFailure: false, war: 'target/*.war' 
-        }
+        sh 'docker rm hello-world' 
+        sh 'docker run -d -p 8082:8080 hello-world-1 --name "hello-world"'
+        sh 'docker ps -a'
       }
     }
   }
