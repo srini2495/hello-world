@@ -24,7 +24,7 @@ pipeline {
     stage ('Deploy') {
       steps {
         sh 'docker stop hello-world || true && docker rm hello-world || true' 
-        sh 'docker run -d -p 8082:8080 hello-world-1 --name "hello-world"'
+        sh 'docker run -d -p 8082:8080 --name "hello-world" hello-world'
         sh 'docker ps -a'
       }
     }
