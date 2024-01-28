@@ -12,8 +12,7 @@ pipeline {
   stages {
     stage ('Connect to vm') {
       steps {
-        sh 'ssh -v -i /etc/ssh/srini-ubuntu_key.pem azureuser@4.240.36.178'
-        'hostname'
+        sh 'ssh -v -i /etc/ssh/srini-ubuntu_key.pem azureuser@4.240.36.178 && hostname'
       }
     }
   }
