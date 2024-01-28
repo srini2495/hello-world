@@ -1,0 +1,20 @@
+pipeline {
+  agent any
+  options {
+    disableConcurrentBuilds()
+    disableResume()
+    buildDiscarder(logRotator(numToKeepStr: '10'))
+    timeout(time: 1, unit: 'HOURS')
+  }
+  tools {
+    maven 'maven-3.6.3' 
+  }
+  stages {
+    stage ('Build') {
+      steps {
+        sh 'ssh -i /home/srini/.ssh/srini-ubuntu_key.pem azureuser@4.240.36.178'
+        sh 'hostname'
+      }
+    }
+  }
+}
