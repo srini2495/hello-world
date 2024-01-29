@@ -10,10 +10,12 @@ pipeline {
     maven 'maven-3.6.3' 
   }
   stages {
-    stage ('Connect to vm') {
+    stage ('Build docker tomcat image and Deploy app') {
       steps {
         script {
           sh '''ssh -v -i /etc/ssh/srini-ubuntu_key.pem azureuser@4.240.36.178 <<EOF
+          docker build . -t "hello-world"
+          docker images
           docker stop hello-world || true && docker rm hello-world || true
           docker run -d -p 80:8080 --name "hello-world" hello-world
           docker ps -a
