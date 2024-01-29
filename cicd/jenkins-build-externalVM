@@ -14,7 +14,9 @@ pipeline {
       steps {
         script {
           sh '''ssh -v -i /etc/ssh/srini-ubuntu_key.pem azureuser@4.240.36.178 <<EOF
-          hostname
+          docker stop hello-world || true && docker rm hello-world || true
+          docker run -d -p 8082:8080 --name "hello-world" hello-world
+          docker ps -a
           '''
         }
       }
