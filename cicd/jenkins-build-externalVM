@@ -13,7 +13,7 @@ pipeline {
     stage ('Connect to vm') {
       steps {
         script {
-          sh '''ssh -v -i /etc/ssh/srini-ubuntu_key.pem azureuser@4.240.36.178 >> ENDSSH
+          sh '''ssh -v -i /etc/ssh/srini-ubuntu_key.pem azureuser@4.240.36.178 <<ENDSSH
           hostname
           ENDSSH
           '''
