@@ -51,9 +51,4 @@ ENDSSH
             }
         }
     }
-    post {
-      always {
-        deleteDir()
-      }
-    }
 }
