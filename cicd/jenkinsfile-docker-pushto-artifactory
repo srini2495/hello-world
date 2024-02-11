@@ -40,9 +40,9 @@ pipeline {
       steps {
 	withCredentials([sshUserPrivateKey(credentialsId: 'vm-key', keyFileVariable: 'SSH_PRIVATE_KEY_PATH')]) {
         sh '''ssh -i $SSH_PRIVATE_KEY_PATH -o StrictHostKeyChecking=no azureuser@4.240.36.178 <<ENDSSH
-        sh "docker stop hello-world | true"
-        sh "docker rm hello-world | true"
-        sh "docker run --name hello-world -d -p 80:8080 ubuntu-docker-local/hello-world:${TAG}"
+        docker stop hello-world | true
+        docker rm hello-world | true
+        docker run --name hello-world -d -p 80:8080 ubuntu-docker-local/hello-world:${TAG}
 ENDSSH
 	'''
 }
