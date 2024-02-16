@@ -42,7 +42,7 @@ pipeline {
         sh '''ssh -i $SSH_PRIVATE_KEY_PATH -o StrictHostKeyChecking=no azureuser@4.240.36.178 <<ENDSSH
         docker stop hello-world | true
         docker rm hello-world | true
-        docker run --name hello-world -d -p 80:8080 ubuntu-docker-local/hello-world:${TAG}
+        docker run --name hello-world -d -p 80:8080 srinilab.jfrog.io/ubuntu-docker-local/hello-world:${TAG}
 ENDSSH
 	'''
 }
